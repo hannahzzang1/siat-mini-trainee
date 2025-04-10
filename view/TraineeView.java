@@ -173,7 +173,7 @@ public class TraineeView {
             if (statDto.getStrength() >= 0) {
                 sb.append(" 힘: +").append(statDto.getStrength()).append(" ");
             }
-            return sb.toString().trim();
+            return sb.toString().trim();			// 상태를 출력하기 위해 배열을 문자열로 변환
 }   
 
 
@@ -345,7 +345,7 @@ public class TraineeView {
         }
         fc.updateTime(playerId);
     }
-
+	// 메인 메뉴> 배너, 상태, 액션선택, 캐릭터 출력
     public int mainMenu() {
 
         String title = getCurrentTime();
