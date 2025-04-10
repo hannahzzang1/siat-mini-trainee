@@ -64,17 +64,17 @@ public class TraineeView {
             }
         }
     }
-
+	// 캐릭터 상태 출력, 생성할 캐릭터 ID, Name 출력 (Userchoice =0 일 경우,캐릭터 생성)
     public void initMenu() {
         while (true) {
-            List<StateResponseDto> charList = fc.getPlayerList();
+            List<StateResponseDto> charList = fc.getPlayerList();	// getPlayerList -> State로 바꾸면 좋겠다 
 
             clear();
             printBanner("캐릭터를 선택하세요.");
     
             System.out.println("0. 새로운 캐릭터 생성");
             margin();
-
+			// 캐릭터 상태 출력
             if(charList.size() > 0) {
                 for (StateResponseDto c : charList) {
                     System.out.println(c.getPlayerId() +". "+ c.getPlayerName()+
@@ -82,7 +82,7 @@ public class TraineeView {
                                         );
                 }
             }
-            int userChoice = inputInt();
+            int userChoice = inputInt();		//스캐너 객체 생성, 숫자값 반환
             if (userChoice == 0) {
                 playerName = inputbox("캐릭터 생성", "이름을 입력하세요.");
                 playerId = fc.createPlayer(playerName).getPlayerId();
@@ -119,7 +119,8 @@ public class TraineeView {
             printShopItems();
             margin();
             System.out.println("  0. 뒤로");
-
+			// 스캐너로 이동. 0일 경우 뒤로 가기. 0이 아니면, 캐릭터 아이디와 번호로 선택한 상품 가져오기
+			// 알림과 결과값 가져오기
             int userChoice = inputInt();
             if (userChoice == 0) {
                 return;
@@ -150,6 +151,7 @@ public class TraineeView {
                 return;
             }
             else {
+				// 아이템 사용
                 ItemUseDto result = fc.useItem(userChoice, userChoice);
                 messagebox(result.getResult(), statChangeString(result.getStatChange()));
             }
@@ -416,7 +418,7 @@ public class TraineeView {
             printItem(item);
         }
     }
-
+	// 아이탬 정보
     public void printInventoryItems() {
         List<InventoryItemDto> items = fc.getInventoryInfo(playerId);
         if (items == null) {
@@ -427,7 +429,7 @@ public class TraineeView {
             printItem(item);
         }
     }
-
+	// 가독성을 위해 추가
     public void printItem(InventoryItemDto item) {
         System.out.println(
             item.getInvenId() +". "+
@@ -435,7 +437,8 @@ public class TraineeView {
             item.getCount()
         ); 
     }
-
+	// 가독성을 위해 추가
+	// 아이템 상세정보
     public void printItem(ItemInfoDto item) {
         System.out.println(
             item.getId() +". "+
@@ -502,7 +505,7 @@ public class TraineeView {
     }
 
     public void printBanner(String title) {
-        printBanner(title, 0);
+        printBanner(title, 0);	// 기본값
     }
     
     public void printBanner(String title, int style) {
