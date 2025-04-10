@@ -30,13 +30,13 @@ public class TraineeView {
     public void exec () {
 
         initMenu();
-
+	//
         while (true) {
             int userChoice = mainMenu();
             switch (userChoice) {
                 case 1:
                     studyMenu();
-                    break;
+                    break;	//반복문 종료
                 case 2:
                     exerciseMenu();
                     break;
@@ -57,7 +57,7 @@ public class TraineeView {
                     break;
                 case 0:
                     System.out.println("종료합니다.");
-                    return;
+                    return;	// 함수 종료
             
                 default:
                     break;
